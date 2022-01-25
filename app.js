@@ -1,20 +1,14 @@
 // Serie de Fibonacci
 // 1 1 2 3 5 8 13 21 34...
-const fs = require('fs')
 
-let fibo1 = 1;
-let fib02 = 1;
-let serie = ''
+const serie = require('./serie')
 
-serie += `${fibo1}\t`;
+let argv = process.argv
+let valor = argv[2].split('=')[1]
 
-for (let i = 2; i <= 7; i++){
-   serie += `${fib02}\t`;
-    fib02 = fibo1 + fib02
-    fibo1 = fib02 - fibo1
-}
+let cantidad = valor
 
-fs.writeFile('fibonacci.txt', serie, (err) =>{
-    if (err) throw err;
-    console.log('The file has been saved')
-})
+serie.crearSerie(cantidad)
+.then(mensaje =>
+    console.log(mensaje))
+    .catch(mensaje => console.log(mensaje))
